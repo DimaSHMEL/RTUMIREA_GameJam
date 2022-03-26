@@ -48,6 +48,7 @@ public class PlayerScript : MonoBehaviour
         {
             
             collectables = SLsys.score;
+            scoreText.GetComponent<TextMeshProUGUI>().SetText(collectables.ToString());
             int numb = SLsys.sceneNumber;
             if(SLsys.playerPosX.Count == 0)
             {
@@ -100,9 +101,9 @@ public class PlayerScript : MonoBehaviour
     void FixedUpdate()
     {
         speedXY = playerInputActions.Player.Move.ReadValue<Vector2>();
-        if(Math.Abs(speedXY.x) > 0.15f && onGround /*&& !jumping*/)
+        if(Math.Abs(speedXY.x) > 0.15f && onGround && !jumping)
             rb.velocity = new Vector2(speedXY.x *  speedMovement, rb.velocity.y);
-        else if(Math.Abs(speedXY.x) == 0.0f && rb.velocity.y == 0.0f /*&& !jumping*/)
+        else if(Math.Abs(speedXY.x) == 0.0f && rb.velocity.y == 0.0f && !jumping)
             rb.velocity = new Vector2(0, rb.velocity.y);
 
         SaveME();
@@ -123,15 +124,14 @@ public class PlayerScript : MonoBehaviour
             
             yield return new WaitForSeconds(0.1f);
         }
-        if(facingRight)
-            rb.velocity = new Vector2(/*Math.Sign(speedXY.x) */ speedMovement, jumpPower * jumpForce); //для того чтобы просто вверх прыгнуть
-        else
-            rb.velocity = new Vector2(-speedMovement, jumpPower * jumpForce);
+        if(onGround)
+            rb.velocity = new Vector2(Math.Sign(speedXY.x) * speedMovement, jumpPower * jumpForce); //для того чтобы просто вверх прыгнуть
+        jumping = false;
 
     }
     private void Update()
     {
-        if (playerInputActions.Player.Jump.triggered && onGround)
+        if (speedXY.x == 0 && playerInputActions.Player.Jump.triggered && onGround)
         {
             StartCoroutine(holdJump());
         }

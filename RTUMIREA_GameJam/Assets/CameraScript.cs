@@ -30,6 +30,7 @@ public class CameraScript : MonoBehaviour
             {
                 pos.position = new Vector3(pos.position.x + gap * 4, pos.position.y, pos.position.z);
             }
+            SAVEME();
         }
 
     }
@@ -54,7 +55,7 @@ public class CameraScript : MonoBehaviour
             {
                 pos.position = new Vector3(pos.position.x + gap * 4, pos.position.y, pos.position.z);
             }
-            Debug.Log(collision.tag);
+            SAVEME();
         }
     }
     void Start()
@@ -107,6 +108,5 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SAVEME();
     }
 }
