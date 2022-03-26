@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour
     //Score values
     private int collectables = 0;
     public String scenename;
+    public bool RESET;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,21 +34,67 @@ public class PlayerScript : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
+        if(RESET)
+        {
+            SLsys.ResetData();
+        }
+        
+        LoadME();
+        
+    }
+    public void LoadME()
+    {
         if (SLsys.LoadGame())
         {
-            gameObject.transform.position = new Vector2(SLsys.playerPosX[SLsys.sceneNumber], SLsys.playerPosY[SLsys.sceneNumber]);
-        }
-        else
-        {
-            if(SceneManager.GetActiveScene().name == scenename)
+            
+            collectables = SLsys.score;
+            int numb = SLsys.sceneNumber;
+            if(SLsys.playerPosX.Count == 0)
+            {
+                List<List<String>> temp1 = new List<List<string>>();
+                SLsys.sceneNumber = 0;
+                numb = SLsys.sceneNumber;
+                SLsys.itemsInScene = temp1;
+            }
+            if (numb == SLsys.playerPosX.Count)
             {
                 SLsys.playerPosX.Add(gameObject.transform.position.x);
                 SLsys.playerPosY.Add(gameObject.transform.position.y);
-                SLsys.sceneNumber = 0;
+                List<String> temp = new List<String>();
+                SLsys.itemsInScene.Add(temp);
+                SLsys.SaveGame();
             }
+            else
+            {
+                gameObject.transform.position = new Vector2(SLsys.playerPosX[SLsys.sceneNumber], SLsys.playerPosY[SLsys.sceneNumber]);
+                for(int i = 0; i < SLsys.itemsInScene[SLsys.sceneNumber].Count; i++)
+                {
+                    if(GameObject.Find(SLsys.itemsInScene[SLsys.sceneNumber][i]))
+                    {
+                        Destroy(GameObject.Find(SLsys.itemsInScene[SLsys.sceneNumber][i]));
+                    }
+                }
+            }
+            
+        }
+        else
+        {
+            List<List<String>> temp1 = new List<List<string>>();
+            SLsys.itemsInScene = temp1;
+            List<String> temp = new List<String>();
+            SLsys.itemsInScene.Add(temp);
+            SLsys.playerPosX.Add(gameObject.transform.position.x);
+            SLsys.playerPosY.Add(gameObject.transform.position.y);
+            SLsys.sceneNumber = 0;
+            SLsys.sceneName = scenename;
             SLsys.SaveGame();
         }
-        
+    }
+    public void SaveME()
+    {
+        SLsys.playerPosX[SLsys.sceneNumber] = (gameObject.transform.position.x);
+        SLsys.playerPosY[SLsys.sceneNumber] = (gameObject.transform.position.y);
+        SLsys.score = collectables;
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -58,7 +105,8 @@ public class PlayerScript : MonoBehaviour
         else if(Math.Abs(speedXY.x) == 0.0f && rb.velocity.y == 0.0f /*&& !jumping*/)
             rb.velocity = new Vector2(0, rb.velocity.y);
 
-        
+        SaveME();
+        SLsys.SaveGame();
     }
     IEnumerator holdJump()
     {

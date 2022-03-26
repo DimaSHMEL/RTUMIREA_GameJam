@@ -18,7 +18,9 @@ class SaveScenes
 {
     public List<float> playerPosX;
     public List<float> playerPosY;
-    public List<int> itemsInScene;
+    public List<float> cameraPosX;
+    public List<float> cameraPosY;
+    public List<List<String>> itemsInScene;
 }
 
 public class SaveLoadSys : MonoBehaviour
@@ -26,9 +28,11 @@ public class SaveLoadSys : MonoBehaviour
     public int sceneNumber;
     public int score;
     public String sceneName;
-    public List<float> playerPosX;
-    public List<float> playerPosY;
-    public List<int> itemsInScene;
+    public List<float> playerPosX = new List<float>();
+    public List<float> playerPosY = new List<float>();
+    public List<float> cameraPosX = new List<float>();
+    public List<float> cameraPosY = new List<float>();
+    public List<List<String>> itemsInScene;
     public void SaveGame()
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -37,6 +41,8 @@ public class SaveLoadSys : MonoBehaviour
         SaveScenes scenes = new SaveScenes();
         scenes.playerPosX = playerPosX;
         scenes.playerPosY = playerPosY;
+        scenes.cameraPosX = cameraPosX;
+        scenes.cameraPosY = cameraPosY;
         current.sceneNumber = sceneNumber;
         current.score = score;
         current.sceneName = sceneName;
@@ -59,6 +65,8 @@ public class SaveLoadSys : MonoBehaviour
             file.Close();
             playerPosX = scenes.playerPosX;
             playerPosY = scenes.playerPosY;
+            cameraPosX = scenes.cameraPosX;
+            cameraPosY = scenes.cameraPosY;
             sceneNumber = current.sceneNumber;
             score = current.score;
             sceneName = current.sceneName;

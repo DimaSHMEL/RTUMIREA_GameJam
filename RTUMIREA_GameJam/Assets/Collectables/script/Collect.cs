@@ -10,6 +10,8 @@ public class Collect : MonoBehaviour
         if(collision.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerScript>().addColect();
+            SaveLoadSys SAVE = GameObject.Find("Savings").GetComponent<SaveLoadSys>();
+            SAVE.itemsInScene[SAVE.sceneNumber].Add(gameObject.name);
             Destroy(this.gameObject);
         }
     }

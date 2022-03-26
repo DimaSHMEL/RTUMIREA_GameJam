@@ -31,11 +31,15 @@ public class PlayerScriptRunner : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
+        
+
+    }
+    public void LoadME()
+    {
         if (SLsys.LoadGame())
         {
             collectables = SLsys.score;
         }
-
     }
     // Update is called once per frame
     void FixedUpdate()
