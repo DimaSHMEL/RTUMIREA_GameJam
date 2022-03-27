@@ -14,6 +14,10 @@ public class PlayerScript : MonoBehaviour
     private bool facingRight = true;
     private Vector2 speedXY;
     private SaveLoadSys SLsys;
+    public float maxJumpPower;
+    public float timeEntercalCharge;
+    public float maxChargeTime;
+    public float speedCharge;
     //Checkers values
     public LayerMask whatIsGround, whatIsWall;
     public BoxCollider2D groundCheck, wallCheck;
@@ -22,6 +26,7 @@ public class PlayerScript : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerInputActions playerInputActions;
     public GameObject scoreText;
+    public GameObject jumpText;
     //Score values
     private int collectables = 0;
     public String scenename;
@@ -114,19 +119,22 @@ public class PlayerScript : MonoBehaviour
         float jumpPower = 0;
         float numberOfSeconds = 0;
         jumping = true;
+        
         while (playerInputActions.Player.Jump.IsPressed())
         {
-            if (jumpPower < 1.2f)
+            if (jumpPower < maxJumpPower)
             {
-                jumpPower += 0.1f;
-                numberOfSeconds += 0.1f;
+                jumpPower += speedCharge;
+                numberOfSeconds += timeEntercalCharge;
             }
-            
-            yield return new WaitForSeconds(0.1f);
+            jumpText.GetComponent<TextMeshProUGUI>().SetText((jumpPower * jumpForce).ToString());
+            yield return new WaitForSeconds(timeEntercalCharge);
         }
         if(onGround)
             rb.velocity = new Vector2(Math.Sign(speedXY.x) * speedMovement, jumpPower * jumpForce); //для того чтобы просто вверх прыгнуть
         jumping = false;
+        jumpText.GetComponent<TextMeshProUGUI>().SetText((0).ToString());
+
 
     }
     private void Update()
