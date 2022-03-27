@@ -31,6 +31,8 @@ public class PlayerScript : MonoBehaviour
     private int collectables = 0;
     public String scenename;
     public bool RESET;
+    //Add values
+    public AudioSource jumpSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -130,8 +132,11 @@ public class PlayerScript : MonoBehaviour
             jumpText.GetComponent<TextMeshProUGUI>().SetText((jumpPower * jumpForce).ToString());
             yield return new WaitForSeconds(timeEntercalCharge);
         }
-        if(onGround)
+        if (onGround)
+        {
             rb.velocity = new Vector2(Math.Sign(speedXY.x) * speedMovement, jumpPower * jumpForce); //для того чтобы просто вверх прыгнуть
+            jumpSound.Play();
+        }
         jumping = false;
         jumpText.GetComponent<TextMeshProUGUI>().SetText((0).ToString());
 
