@@ -45,3 +45,6 @@ TagManager:
   - name: Items
     uniqueID: 1755261513
     locked: 0
+  - name: Floppa
+    uniqueID: 2922018991
+    locked: 0
