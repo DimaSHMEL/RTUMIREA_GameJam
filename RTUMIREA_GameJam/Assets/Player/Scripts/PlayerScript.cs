@@ -103,6 +103,7 @@ public class PlayerScript : MonoBehaviour
         SLsys.playerPosX[SLsys.sceneNumber] = (gameObject.transform.position.x);
         SLsys.playerPosY[SLsys.sceneNumber] = (gameObject.transform.position.y);
         SLsys.score = collectables;
+        SLsys.sceneName = SceneManager.GetActiveScene().name;
     }
     // Update is called once per frame
     void FixedUpdate()

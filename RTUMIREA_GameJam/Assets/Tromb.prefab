@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6654107362978406617}
   - component: {fileID: 9037465839730328182}
-  - component: {fileID: 7747542427837074443}
   - component: {fileID: -5108915017760035174}
+  - component: {fileID: 8483370985255053479}
   m_Layer: 7
   m_Name: Tromb
   m_TagString: Tromb
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7114449053928102071}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 20.111, y: 1.658, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
@@ -84,32 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7747542427837074443
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7114449053928102071}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.027823448, y: 0.8465992}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.868082, y: 2.0196764}
-  m_EdgeRadius: 0
 --- !u!50 &-5108915017760035174
 Rigidbody2D:
   serializedVersion: 4
@@ -131,3 +105,77 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &8483370985255053479
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114449053928102071}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.82, y: 0.26}
+      - {x: 0.97999996, y: 0.41}
+      - {x: 1.15, y: 0.45}
+      - {x: 1.3, y: 0.58}
+      - {x: 1.35, y: 0.68}
+      - {x: 1.35, y: 0.93}
+      - {x: 1.3399999, y: 1}
+      - {x: 1.31, y: 1.17}
+      - {x: 1.35, y: 1.26}
+      - {x: 1.35, y: 1.38}
+      - {x: 1.3399999, y: 1.4599999}
+      - {x: 1.17, y: 1.5999999}
+      - {x: 0.90999997, y: 1.7199999}
+      - {x: 0.65999997, y: 1.78}
+      - {x: 0.53, y: 1.8399999}
+      - {x: 0.19999999, y: 1.8399999}
+      - {x: 0.08, y: 1.8}
+      - {x: -0.049999997, y: 1.8399999}
+      - {x: -0.31, y: 1.8399999}
+      - {x: -0.52, y: 1.73}
+      - {x: -0.65, y: 1.81}
+      - {x: -0.84999996, y: 1.8199999}
+      - {x: -0.98999995, y: 1.75}
+      - {x: -1.15, y: 1.5899999}
+      - {x: -1.22, y: 1.4699999}
+      - {x: -1.24, y: 1.28}
+      - {x: -1.23, y: 1.25}
+      - {x: -1.14, y: 1.11}
+      - {x: -1.29, y: 1.05}
+      - {x: -1.4399999, y: 0.87}
+      - {x: -1.4399999, y: 0.62}
+      - {x: -1.38, y: 0.55}
+      - {x: -1.31, y: 0.53}
+      - {x: -1.14, y: 0.53999996}
+      - {x: -1.11, y: 0.37}
+      - {x: -1.02, y: 0.22999999}
+      - {x: -0.9, y: 0.12}
+      - {x: -0.77, y: 0.04}
+      - {x: -0.68, y: 0.03}
+      - {x: -0.53999996, y: 0.02}
+      - {x: -0.38, y: 0.25}
+      - {x: -0.26, y: 0.21}
+      - {x: -0.26, y: 0.03}
+      - {x: -0.25, y: -0.02}
+      - {x: -0.08, y: -0.14999999}
+      - {x: 0.22, y: -0.14999999}
+      - {x: 0.44, y: -0.07}
+      - {x: 0.55, y: 0.049999997}
+      - {x: 0.62, y: 0.17}
